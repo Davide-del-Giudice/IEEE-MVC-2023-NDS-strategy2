@@ -70,7 +70,7 @@ Map = load('Map.mat');
 %%
 fprintf('Please wait until the simulation is completed...\n\n')
 tic;
-out = sim('testEnergyManagementAlgorithm.slx','StopTime',num2str(Tend));
+out = sim('testEnergyManagementAlgorithm_2021b.slx','StopTime',num2str(Tend));
 sim_time = toc;
 fprintf('Success!\t Total simulation time is: \t %d seconds\n',sim_time)
 fprintf('Please check the auto-generated html report for further evaluation of your designed EMA.\n')
