@@ -12,6 +12,11 @@ addpath(fullfile(pwd, 'FMIKit-Simulink-3.0'))
 % initialize FMI Kit
 FMIKit.initialize()
 
+%% LOADS A MAT FILE GENERATED FOR THE STRATEGY TO BE USED INSIDE THE EMA
+% I did not manage to load the mat file directly on Simulink, being it a
+% struct.
+Map = load('Map.mat');
+
 %% Initialization
 Ts_solver   = 0.01;                                                         % Solver maximum sampling time
 Ts_sample   = 0.01;                                                         % Sampling of tracks and outputs
@@ -65,12 +70,10 @@ param.EMAbaseline.ktv       = 0.5;                                          % to
 param.EMAbaseline.a_ad      = 0.5;                                          % front/rear ratio
 
 %% Main simulation
-%% LOADS A MAT FILE GENERATED FOR THE STRATEGY TO BE USED INSIDE THE EMA
-Map = load('Map.mat');
 %%
 fprintf('Please wait until the simulation is completed...\n\n')
 tic;
-out = sim('testEnergyManagementAlgorithm_2021b.slx','StopTime',num2str(Tend));
+out = sim('testEnergyManagementAlgorithm.slx','StopTime',num2str(Tend));
 sim_time = toc;
 fprintf('Success!\t Total simulation time is: \t %d seconds\n',sim_time)
 fprintf('Please check the auto-generated html report for further evaluation of your designed EMA.\n')
